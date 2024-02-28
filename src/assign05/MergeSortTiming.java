@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class MergeSortTiming {
     public static void main(String[] args) {
 
-        for(int i = 0; i < 1; i++) {
+        for(int i = 0; i < 100; i++) {
             int listSize = 1000000; // Example list size
 
             ArrayList<Integer> list = ArrayListSorter.generateDescending(listSize);
