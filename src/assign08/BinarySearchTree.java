@@ -1,8 +1,6 @@
 package assign08;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class BinarySearchTree<Type extends Comparable<? super Type>> implements SortedSet<Type>{
     //Instance variables
@@ -190,7 +188,23 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
      */
     @Override
     public int size() {
+        if(root == null){
+            return 0;
+        }
         int size = 0;
+        Queue<BinaryNode<Type>> queue = new LinkedList<>();
+        queue.add(root);
+
+        while(!queue.isEmpty()){
+            BinaryNode<Type> curNode = queue.remove();
+            size++;
+            if (curNode.getLeft() != null){
+                queue.add(curNode.getLeft());
+            }
+            if (curNode.getRight() != null){
+                queue.add(curNode.getRight());
+            }
+        }
         return size;
     }
 
