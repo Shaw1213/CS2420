@@ -37,6 +37,7 @@ public class BinaryNode<Type extends Comparable<? super Type>> {
     }
 
     //DOT generate
+    //http://www.webgraphviz.com
     public String generateDot() {
         StringBuilder dot = new StringBuilder();
         generateDotRecursive(dot);

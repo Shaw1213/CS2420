@@ -44,6 +44,33 @@ public class BinarySearchTreeTest {
 //        bst.clear();
 //        System.out.println(bst.isEmpty());
 
+//        //Test remove(passed)
+//        bst.removeAll(list);
+//        boolean isEmpty = false;
+//        if(bst.getRoot() == null){
+//            isEmpty = true;
+//        }
+//        System.out.println(isEmpty);
+
+//        //Test remove(passed)
+//        bst.remove(7);
+//        bst.remove(3);
+//        System.out.println(bst.getRoot().generateDot());
+
+//        //Test size(passed)
+//        ArrayList<Integer> list1 = new ArrayList<>();
+//        list1.addAll(List.of(34,45,65,76,87,54,100));
+//        bst.addAll(list1);
+//        System.out.println(bst.getRoot().generateDot());
+
+//        //Test toArrayList(passed)
+//        ArrayList<Integer> list2 = new ArrayList<>();
+//        System.out.println(bst.toArrayList());
+
+        //edge case
+        bst.add(null);
+        System.out.println(bst.getRoot().generateDot());
+
 
 
 

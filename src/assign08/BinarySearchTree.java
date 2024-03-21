@@ -173,14 +173,88 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
         return curNode.getData();
     }
 
+    /**
+     * Ensures that this set does not contain the specified item.
+     *
+     * @param item - the item whose absence is ensured in this set
+     * @return true if this set changed as a result of this method call (that is, if
+     *         the input item was actually removed); otherwise, returns false
+     */
     @Override
     public boolean remove(Type item) {
-        return false;
+        int initialSize = size();//Get the initial size
+        root = removeHelper(root, item);//Remove the item
+        int newSize = size();//Get the new size
+        return initialSize != newSize;//Return true if the size changed
     }
 
+    /**
+     * Ensures that this set does not contain any of the items in the specified
+     *
+     * @param node - the root of the tree
+     * @param item - the item to be removed
+     * @return the root of the tree after the item is removed
+     */
+    private BinaryNode<Type> removeHelper(BinaryNode<Type> node, Type item){
+        if(node == null){
+            return null;
+        }
+        int compareResult = item.compareTo(node.getData());
+        if(compareResult < 0){//
+            node.setLeft(removeHelper(node.getLeft(), item));//Remove from left
+        } else if (compareResult > 0){
+            node.setRight(removeHelper(node.getRight(), item));//Remove from right
+        } else{
+            //Node with two children
+            if(node.getLeft() != null && node.getRight() != null){
+                //Find the predecessor, the max in left tree
+                BinaryNode<Type> predecessor = findMax(node.getLeft());
+                //replace the node's data with predecessor
+                node.setData(predecessor.getData());
+                //remove the predecessor from the left tree
+                node.setLeft(removeHelper(node.getLeft(), predecessor.getData()));
+            } else {
+                //Node with one or no child
+                node = (node.getLeft() != null) ? node.getLeft() : node.getRight();
+            }
+        }
+        return node;
+    }
+
+    /**
+     * Helper method to find the max in the left tree
+     *
+     * @param node - the root of the left tree
+     * @return the max in the left tree
+     */
+    private BinaryNode<Type> findMax(BinaryNode<Type> node){
+        if(node == null){
+            return null;
+        }
+        while(node.getRight() != null){
+            node = node.getRight();
+        }
+        return node;
+    }
+
+    /**
+     * Ensures that this set does not contain any of the items in the specified
+     * collection.
+     *
+     * @param items - the collection of items whose absence is ensured in this set
+     * @return true if this set changed as a result of this method call (that is, if
+     *         any item in the input collection was actually removed); otherwise,
+     *         returns false
+     */
     @Override
     public boolean removeAll(Collection<? extends Type> items) {
-        return false;
+        boolean setChanged = false;
+        for(Type item : items){
+            if(remove(item)){
+                setChanged = true;
+            }
+        }
+        return setChanged;
     }
 
     /**
@@ -208,8 +282,28 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
         return size;
     }
 
+    /**
+     * Returns an ArrayList containing all the items in this set, in sorted
+     * order.
+     */
     @Override
     public ArrayList<Type> toArrayList() {
-        return null;
+        ArrayList<Type> list = new ArrayList<>();
+        inOrderTraversal(root, list);
+        return list;
+    }
+
+    /**
+     * Helper method to traverse the tree in order
+     * @param node - the root of the tree
+     * @param list - the list to store the items
+     * @return the list of items in the tree
+     */
+    private void inOrderTraversal(BinaryNode<Type> node, ArrayList<Type> list){
+        if(node != null){
+            inOrderTraversal(node.getLeft(), list);
+            list.add(node.getData());
+            inOrderTraversal(node.getRight(), list);
+        }
     }
 }
