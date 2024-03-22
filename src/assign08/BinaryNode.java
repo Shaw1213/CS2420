@@ -1,5 +1,10 @@
 package assign08;
 
+/**
+ * Represents a node in a binary tree.
+ * @author Shawn Zhang
+ * @version 3/22/2024
+ */
 public class BinaryNode<Type extends Comparable<? super Type>> {
     // Instance variables
     private Type data;
@@ -44,6 +49,7 @@ public class BinaryNode<Type extends Comparable<? super Type>> {
         return "digraph BST {\n" + dot.toString() + "}";
     }
 
+    //Helper method for generateDot
     private void generateDotRecursive(StringBuilder dot) {
         dot.append("    \"" + data + "\";\n");
         if (left != null) {

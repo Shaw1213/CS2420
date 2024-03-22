@@ -2,6 +2,12 @@ package assign08;
 
 import java.util.*;
 
+/**
+ * This class represents a binary search tree.
+ * @author Shawn Zhang
+ * @version 3/22/2024
+ */
+
 public class BinarySearchTree<Type extends Comparable<? super Type>> implements SortedSet<Type>{
     //Instance variables
     private BinaryNode<Type> root;

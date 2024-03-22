@@ -7,7 +7,7 @@ public class BinarySearchTreeTest {
     public static void main(String[] args) {
         BinarySearchTree<Integer> bst = new BinarySearchTree<>();
         ArrayList<Integer> list = new ArrayList<>();
-        list.addAll(List.of(5, 3, 7, 2, 4, 6, 8));
+        list.addAll(List.of(20, 9, 27, 5, 16, 23, 2, 11,19));
         bst.addAll(list);
 
         System.out.println(bst.getRoot().generateDot());
@@ -68,8 +68,8 @@ public class BinarySearchTreeTest {
 //        System.out.println(bst.toArrayList());
 
         //edge case
-        bst.add(null);
-        System.out.println(bst.getRoot().generateDot());
+//        bst.add(null);
+//        System.out.println(bst.getRoot().generateDot());
 
 
 
