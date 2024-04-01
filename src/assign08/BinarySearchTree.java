@@ -30,7 +30,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
      */
     @Override
     public boolean add(Type item) {
-        if (root == null){
+        if (root == null) {
             root = new BinaryNode<>(item);
             return true;
         } else {
@@ -52,7 +52,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
             //Item is less than node.getData()
             if(node.getLeft() == null){
                 node.setLeft(new BinaryNode<>(item));//Add item
-                return false;
+                return true;
             } else {
                 return addHelper(node.getLeft(), item);
             }
